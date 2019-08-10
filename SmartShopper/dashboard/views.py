@@ -6,6 +6,8 @@ from dashboard.models import *
 
 import json
 # Create your views here.
+def dashboard(request):
+    return render(request,'index.html',{})
 
 def itemView(request):
     pk = 0
