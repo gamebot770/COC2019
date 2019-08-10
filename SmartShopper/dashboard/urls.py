@@ -18,6 +18,8 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('',views.dashboard,name="dashboard"),
-    path('ListView',views.itemView,name="itemView"),
+    path('Landing',views.dashboard,name="dashboard"),
+    path('ItemView',views.itemView,name="itemView"),
+    path('InvoiceView', views.invoiceView, name = "invoiceView"),
+    path('Inventory', views.inven, name = "inventoryView"),
 ]
