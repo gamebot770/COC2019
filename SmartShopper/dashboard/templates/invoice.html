@@ -2,8 +2,28 @@
 
 
 {%block content%}
-{% for boy in boys %}
-<p> {{boy.name}} </p>
-{% endfor%}
+
+<div class="container-fluid">
+  <div class="row">
+    {% for invoice in "invoices" %}
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Invoice Number: {{invoice.pk}}</div>
+        <div class="card-body">
+
+            Date: <br>
+            Total: <br>
+            Final Sale: <br>
+
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 
 {%endblock%}

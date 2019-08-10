@@ -20,14 +20,13 @@ class Item(models.Model):
 
 class Invoice(models.Model):
     customerNum = models.IntegerField()
-    customerfName = CharField(max_length = 25)
-    customerlName = CharField(max_length = 25)
-    finalSale = FloatField()
-    discount = FloatField()
-    sendInvoice = CharField(max_length = 200)
-    total = FloatField()
+    customerfName = models.CharField(max_length = 25)
+    customerlName = models.CharField(max_length = 25)
+    finalSale = models.FloatField()
+    discount = models.FloatField()
+    sendInvoice = models.CharField(max_length = 200)
+    total = models.FloatField()
 
-class
 
 
 
