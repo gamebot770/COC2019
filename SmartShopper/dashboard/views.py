@@ -7,7 +7,7 @@ from dashboard.models import *
 import json
 # Create your views here.
 def dashboard(request):
-    return render(request,'index.html',{})
+    return render(request,'invoice.html',{})
 
 def itemView(request):
     itemList = Item.objects.all()
