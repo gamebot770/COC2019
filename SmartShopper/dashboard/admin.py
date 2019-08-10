@@ -3,3 +3,5 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Warehouse)
+admin.site.register(Item)
+
