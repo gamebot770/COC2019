@@ -63,7 +63,7 @@ button,
 select,
 textarea {
 	font-family:'Open Sans', Arial, sans-serif;
-  font-size: 13px;
+	font-size: 13px;
 }
 
 select{
@@ -98,7 +98,6 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   font-size: 13px;
-
 }
 
 textarea:focus,
