@@ -26,5 +26,3 @@ def inven(request):
 def invoiceDetails(request, pk):
     invoice = Invoice.objects.get(pk)
     return render(request, 'invoicedetails.html', {'invoice': invoice})
-
-

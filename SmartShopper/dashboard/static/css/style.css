@@ -57,7 +57,7 @@ div, article, section, header, footer, nav, li {
 }
 body {
 	background:#fff;
-	color: #444;
+	color: #1c1c1c;
 	font-size: 16px;
 	font-weight:300;
 	font-family:'Open Sans', Arial, sans-serif;
@@ -131,8 +131,8 @@ a.scrollup i:hover {
 
 input[type=text], input[type=submit], textarea {
 	width: 100%;
-	padding: 0.5em;
-	font-size: 1em;
+	/* padding: 0.5em; */
+	/* font-size: 1em; */
 	margin-bottom: 1.5em;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -406,13 +406,9 @@ header .logo {
 /* --- Header subscribe form --- */
 
 #header-wrapper input[type=text] {
-	background: rgba(227, 231, 228, 1);
-	font-family: 'Open Sans', sans serif;
-	font-size: 1.3125em;
-	border: 0;
-	text-align: center;
-	vertical-align: middle;
-	margin-bottom:0 !important;
+	/* font-size: 1.3125em; */
+	/* border: 0; */
+	/* margin-bottom:0 !important; */
 }
 #header-wrapper input[type=text]:focus {
 	background: #43413e;
@@ -421,10 +417,7 @@ header .logo {
 	-moz-transition: background 0.25 ease-in;
 	-webkit-transition: background 0.25 ease-in;
 }
-#header-wrapper input[type=text] {
-	height: 2.9em;
-	width:50%;
-}
+
 #header-wrapper input[type=submit] {
 	color: #fff;
 	width: 185px;
@@ -1300,15 +1293,17 @@ i.icon-white {
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
-  background-color: #545454;
-  border-color: none;
-  *background-color: #545454;
-  background-image: none;
+	background-color: #545454;
+	border-color: none;
+  *
+	background-color: #545454;
+	background-image: none;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-  filter: none;
-  border: none;
-  *border: 0;
-  border-bottom-color: none;
+	filter: none;
+	border: none;
+  *
+	border: 0;
+	border-bottom-color: none;
 }
 .btn:link, .btn:visited {
 	color: #fff;
@@ -1377,8 +1372,9 @@ i.icon-white {
 .btn-primary {
   color: #ffffff;
   text-shadow: none;
+  background-color: #1c1c1c;
+  *
   background-color: #09828c;
-  *background-color: #09828c;
   background-image: none;
   border-color: none;
   filter:none;

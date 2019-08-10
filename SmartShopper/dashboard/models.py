@@ -28,7 +28,3 @@ class Invoice(models.Model):
     discount = models.FloatField()
     sendInvoice = models.CharField(max_length = 200)
     total = models.FloatField()
-
-
-
-
