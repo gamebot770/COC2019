@@ -1,0 +1,1 @@
+Powershell.exe -noexit -command "python manage.py runserver"
