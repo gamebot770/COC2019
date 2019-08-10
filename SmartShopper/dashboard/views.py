@@ -6,8 +6,6 @@ from dashboard.models import *
 
 import json
 # Create your views here.
-def dashboard(request):
-    return render(request,'inv.html',{})
 
 def itemView(request):
     pk = 0
@@ -26,5 +24,8 @@ def inven(request):
 def invoiceDetails(request, pk):
     invoice = Invoice.objects.get(pk)
     return render(request, 'invoicedetails.html', {'invoice': invoice})
+
+def index(request):
+    return render(request, 'index.html')
 
 

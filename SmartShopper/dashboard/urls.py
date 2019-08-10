@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 
+
 urlpatterns = [
     path('Landing',views.dashboard,name="dashboard"),
     path('ItemView',views.itemView,name="itemView"),
@@ -24,4 +25,7 @@ urlpatterns = [
     path('Inventory', views.inven, name = "inventoryView"),
     path('Inventory', views.inven, name = "inventoryView"),
     path('Invoice/<pk>', views.invoiceDetails, name = "invoice"),
+    path('Index', views.index, name = 'index'),
+
+
 ]
