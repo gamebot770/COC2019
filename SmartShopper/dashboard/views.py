@@ -10,5 +10,11 @@ def dashboard(request):
     return render(request,'index.html',{})
 
 def itemView(request):
-    itemList = Item.objects.all()
-    print(itemList)
+    pk = 0
+    item = Item.objects.get(pk)
+    return render(request, '',{"item":item})
+
+def invoiceView(request):
+    pk = 0
+    invoice = Invoice.objects.get(pk)
+    return render(request, '', {"invoice":invoice})
