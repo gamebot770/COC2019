@@ -22,4 +22,6 @@ urlpatterns = [
     path('ItemView',views.itemView,name="itemView"),
     path('InvoiceView', views.invoiceView, name = "invoiceView"),
     path('Inventory', views.inven, name = "inventoryView"),
+    path('Inventory', views.inven, name = "inventoryView"),
+    path('Invoice/<pk>', views.invoiceDetails, name = "invoice"),
 ]

@@ -23,4 +23,8 @@ def inven(request):
     inventory = Item.objects.all()
     return render(request, 'inv.html', {'inventory':inventory})
 
+def invoiceDetails(request, pk):
+    invoice = Invoice.objects.get(pk)
+    return render(request, 'invoicedetails.html', {'invoice': invoice})
+
 
