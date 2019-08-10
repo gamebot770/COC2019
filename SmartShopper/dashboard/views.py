@@ -7,8 +7,16 @@ from dashboard.models import *
 import json
 # Create your views here.
 def dashboard(request):
+    pk = 0
+    user.object.get(username= 'gamebot')
     return HttpResponse("Hi")
 
 def itemView(request):
-    itemList = Item.objects.all()
-    print(itemList)
+    pk = 0
+    item = Item.objects.get(pk)
+    return render(request, '',{"item":item})
+
+def invoiceView(request):
+    pk = 0
+    invoice = Invoice.objects.get(pk)
+    return render(request, '', {"invoice":invoice})

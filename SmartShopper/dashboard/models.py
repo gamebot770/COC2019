@@ -18,5 +18,16 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+class Invoice(models.Model):
+    customerNum = models.IntegerField()
+    customerfName = CharField(max_length = 25)
+    customerlName = CharField(max_length = 25)
+    finalSale = FloatField()
+    discount = FloatField()
+    sendInvoice = CharField(max_length = 200)
+    total = FloatField()
+
+class
+
 
 
