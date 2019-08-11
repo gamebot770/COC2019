@@ -1,0 +1,94 @@
+{% extends 'dashboard/base.html' %}
+{% load static%}
+
+{%block content%}
+
+<div class="container-fluid" style="height:100%">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-xl-12 col-sm-12 mb-12">
+          <div class="card mb-3">
+            <div class="card-body">
+
+              <h1><center> Add Stock Through Excel<center> </h1>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="container-fluid">
+        	<br>
+        	<div class="row">
+
+                  <div class="container">
+
+                      <form id="form" method="POST" action="{% url 'addExcelStock'%}" enctype="multipart/form-data">
+                          {% csrf_token%}
+                          <div class="row">
+
+                              <div class="col-12">
+                                <br>
+                                <br>
+                                <br>
+                                <center> <a href="{% static 'customerTemplate.xlsx' %}" class="btn btn-primary" download>Download Template</a> </center><br>
+                                <center>
+                                <label class="btn btn-primary">
+                                    Upload Excel File with Changes <input type="file" name="file" hidden id="file-upload">
+                                </label>
+                                <div id="file-upload-filename"></div>
+                                <button class="btn btn-success" type="submit" name="button" style="display:None" id="submitButton">Submit?</button>
+                              </center>
+
+                              </div>
+
+                        </div>
+                      </form>
+                  </div>
+
+
+      	</div>
+        </div>
+      </div>
+</div>
+<div class="col-6" style="">
+    <br style="line-height:750%">
+    <center> <img src='{% static "excel.png" %}'></center>
+</div>
+
+</div>
+</div>
+
+
+{%endblock%}
+
+{% block scripts %}
+<script type="text/javascript">
+  var input = document.getElementById( 'file-upload' );
+  var infoArea = document.getElementById( 'file-upload-filename' );
+
+  input.addEventListener( 'change', showFileName );
+
+  function showFileName( event ) {
+
+    // the change event gives us the input it occurred in
+    var input = event.srcElement;
+
+    // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+    var fileName = input.files[0].name;
+
+    // use fileName however fits your app best, i.e. add it into a div
+    infoArea.textContent = 'File name: ' + fileName;
+    if (fileName != ""){
+        $("#submitButton").fadeIn();
+    }
+    else{
+      $("#submitButton").fadeOut();
+
+    }
+  }
+</script>
+
+{%endblock%}

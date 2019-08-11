@@ -29,4 +29,8 @@ urlpatterns = [
     path('createInvoice',views.createInvoice,name="createInvoice"),
     path('addInventoryManual',views.addInventoryManual,name="addIneventoryManual"),
     path('addInventoryManual/<addAnother>',views.addInventoryManual,name="addIneventoryManualPost"),
+    path('addExcelStock',views.addExcelInventory,name="addExcelStock"),
+    path('login',views.userLogin,name="userLogin"),
+    path('logout',views.userLogout,name="userLogout"),
+    path('register',views.register,name="register"),
 ]

@@ -1,147 +1,108 @@
-{% extends "index.html"%}
+{% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
-input, label {
-  margin: 5px 5px;
-}
+<head>
 
-.form-group {
-  margin: 30px auto;
-  width: 450px;
-}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-.form-control {
-  alignleft;
-}
+  <title>SB Admin - Register</title>
 
-#inputStreet {
-  width: 100%;
-  border-radius: 5px;
-  padding: 0px;
-  margin-top: -2px;
-}
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'dashboard/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
 
-#inputCity {
-  width: 100%;
-  border-radius: 5px;
-}
+  <!-- Custom styles for this template-->
+  <link href="{%static 'dashboard/css/sb-admin.css' %}" rel="stylesheet">
 
-#inputCountry {
-  width: 100%;
-  border-radius: 5px;
-}
+</head>
 
-#inputCName {
-  margin-bottom: 3px;
-  padding: 0px;
-  width: 101%;
-  border-radius: 5px;
-  height: 26px;
-}
+<body class="" style="background-image:url('/static/img/bg/landing_pic.jpg');background-size:100% 100%">>
 
-#inputEmail {
-  width: 100%;
-  border-radius: 5px;
-  padding: 0px;
-}
-
-#inputPassword {
-  width: 97%;
-  height: 15px;
-  border-radius: 5px;
-  margin-bottom:5px;
-}
-
-#verifyPassword {
-  width: 97%;
-  height: 15px;
-  border-radius: 5px;
-}
-
-.pattern-box {
-  position: relative;
-  border-radius: 25px;
-  width: 100%;
-  height: 600px;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin-top: -100px;
-}
-
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-</style>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2"></div>
-      <div class="span8">
-        <div class="pattern-box">
-          <br>
-            <h1> Register </h1>
-
-            <form>
-              <div class="form-group">
-                <input type="text"
-                       class="form-control"
-                       id="inputCName"
-                       name="companyname"
-                       placeholder="Company Name">
-
-                <input type="email"
-                        class="form-control"
-                        id="inputEmail"
-                        name="email"
-                        placeholder="Email">
-
-                <input type="street"
-                       class="form-control"
-                       id="inputStreet"
-                       name="street"
-                       placeholder="Street">
-
-                <input type="city"
-                       class="form-control"
-                       id="inputCity"
-                       name="city"
-                       placeholder="City">
-
-                <input type="country"
-                       class="form-control"
-                       id="inputCountry"
-                       name="country"
-                       placeholder="Country">
-
-                 <input type="password"
-                        class="form-control"
-                        id="inputPassword"
-                        name="password"
-                        placeholder="Password">
-
-                  <input type="password"
-                         class="form-control"
-                         id="verifyPassword"
-                         name="verifypassword"
-                         placeholder="Verify Password">
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Register an Account</div>
+      <div class="card-body">
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token%}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name" required="required" autofocus="autofocus">
+                  <label for="firstName">First name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name" required="required">
+                  <label for="lastName">Last name</label>
+                </div>
+              </div>
             </div>
-            </form>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required="required">
+              <label for="inputEmail">Username</label>
+            </div>
+          </div>
 
-            <button type="button" class="btn" form="registration" value="Submit">Register</button>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="inputEmail" class="form-control" name="email" placeholder="Email address" required="required">
+              <label for="inputEmail">Email address</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="inputEmail" class="form-control" name="companyName" placeholder="Email address" required="required">
+              <label for="inputEmail">Company Name</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="inputEmail" class="form-control" placeholder="Address" required="required" name="address">
+              <label for="inputEmail">Address</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required="required">
+                  <label for="inputPassword">Password</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                  <label for="confirmPassword">Confirm password</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" href="{% url 'register' %}">Register</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="{% url 'userLogin' %}">Login Page</a>
         </div>
       </div>
-    <div class="span2"></div>
+    </div>
   </div>
 
-</div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'dashboard/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-{% endblock %}
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'dashboard/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+</body>
+
+</html>

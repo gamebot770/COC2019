@@ -41,3 +41,6 @@ class InvoiceItem(models.Model):
 class stockUpdate(models.Model):
     item = models.ForeignKey(Item,on_delete=models.CASCADE)
     count = models.IntegerField()
+
+    def __str__(self):
+        return "Restock of " + str(self.count) + " orders of " + self.item.name

@@ -1,41 +1,71 @@
-{% extends "index.html"%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<style>
-.pattern-box {
-  position: relative;
-  border-radius: 25px;
-  left: 530px;
-  bottom: 100px;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 500px;
-  height: 500px;
-}
+<head>
 
-.elevated-box {
-  position: relative;
-  overflow: hidden;
-  z-index: 3;
-  opacity: 1.0;
-}
-</style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<div class="pattern-box">
-  <div class="elevated-box">
-  <h1> Login </h1>
-    <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1" style="color: white">Email</label>
-        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"><br>
+  <title>SB Admin - Login</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'dashboard/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="{%static 'dashboard/css/sb-admin.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="" style="background-image:url('/static/img/bg/landing_pic.jpg');background-size:100% 100%">
+  <br>
+  <br>
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+        <form method="POST" action="{% url 'userLogin' %}">
+          {% csrf_token%}
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="inputEmail" class="form-control" placeholder="Username" required="required" autofocus="autofocus" name="username">
+              <label for="inputEmail">Username</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" name="password">
+              <label for="inputPassword">Password</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me">
+                Remember Password
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Login</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="register.html">Register an Account</a>
+          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1" style="color: white">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    </div>
   </div>
-</div>
 
-{%endblock%}
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'dashboard/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'dashboard/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+</body>
+
+</html>
