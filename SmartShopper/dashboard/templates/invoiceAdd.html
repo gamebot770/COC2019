@@ -1,0 +1,202 @@
+{% extends 'dashboard/base.html' %}
+
+
+{%block content%}
+<form data-quantityURL="{% url 'getQuantity' %}">
+<div class="container-fluid">
+  <div class="row">
+
+
+    <div class="col-xl-3 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          General Information</div>
+        <div class="card-body">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Customer First Name</label>
+              <input type="text" class="form-control" id="customerFirstName" name="customerFirstName" aria-describedby="emailHelp" placeholder="Enter Customer First Name">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Customer Last Name</label>
+              <input type="text" class="form-control" id="customerLastName" name="customerFirstName" aria-describedby="emailHelp" placeholder="Enter Customer Last Name">
+            </div>
+
+            <div class="form-group">
+              <label for="total">Total</label>
+              <input type="float" class="form-control" id="total" name="customerFirstName" aria-describedby="emailHelp" readonly>
+            </div>
+
+            <div class="form-group">
+              <label for="discount">Discount</label>
+              <input type="float" class="form-control" id="discount" >
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Final Sale</label>
+              <input type="float" class="form-control" id="finalSale" name="customerFirstName" aria-describedby="emailHelp">
+            </div>
+
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Send Invoice? </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-9 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Add Items</div>
+        <div class="card-body">
+
+
+            <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+
+              </tr>
+            </thead>
+            <tbody id="items">
+              <tr id="formTemplate" class="d-none">
+                <th scope="row">
+                    <select class="form-control invoiceForm itemSelector">
+                      <option></option>
+                      {% for item in items%}
+                        <option value={{item.pk}} data-Quantity={{item.stock}} data-unitValue={{item.salesPrice}}>{{item.name}}</option>
+                      {% endfor %}
+                    </select>
+                </th>
+                <td><input class="form-control invoiceForm quantityTracker" type="number" /></td>
+              </tr>
+              <tr id="invoiceItem0" name="invoiceItem0">
+                <th scope="row" id="invoiceItem0" name="invoiceItem0">
+                    <select class="form-control invoiceForm itemSelector" name="" data-quantityName="invoiceQuantity0">
+                      <option></option>
+                      {% for item in items%}
+                        <option value={{item.pk}} data-Quantity={{item.stock}} data-unitValue={{item.salesPrice}}>{{item.name}}</option>
+                      {% endfor %}
+                    </select>
+                </th>
+                <td><input class="form-control invoiceForm quantityTracker" type="number" name="invoiceQuantity0" id="invoiceQuantity0"/></td>
+              </tr>
+
+            </tbody>
+          </table>
+
+            <button type="button" id="addButton" class="btn btn-primary">Add Item <i class="fas fa-plus"></i></button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</form>
+
+
+
+{%endblock%}
+
+{% block scripts%}
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var quantity = 0;
+
+    var fieldCount = 1;
+    $("#addButton").on("click",function(){
+        clone = $("#formTemplate").clone(true, true);
+        clone.removeClass("d-none");
+        clone.attr("name","invoiceItem" + fieldCount);
+        clone.attr("id","invoiceItem" + fieldCount);
+
+        clone.appendTo("#items");
+        $("#"+ "invoiceItem" + fieldCount +"> th > select").attr("data-quantityName","invoiceQuantity"+fieldCount);
+        console.log($("#"+ "invoiceItem" + fieldCount +" > select").attr("data-quantityName"));
+
+        $("#invoiceItem1 > th > select")
+
+        $("#"+ "invoiceItem" + fieldCount +"> td > input").attr("name","invoiceQuantity"+fieldCount);
+        console.log($("#"+ "invoiceItem" + fieldCount +"> td > input").attr("name"));
+
+
+        $("#"+ "invoiceItem" + fieldCount +"> td > input").attr("id","invoiceQuantity"+fieldCount);
+        console.log($("#"+ "invoiceItem" + fieldCount +"> select").attr("id"));
+
+        fieldCount++;
+
+    });
+
+  $(".itemSelector").on("change",function(){
+      console.log("HERE");
+      var quantityName;
+      quantity = $(this).children("option:selected").attr("data-Quantity");
+      console.log(quantity);
+      quantityName = $(this).attr("data-quantityName");
+      console.log(quantityName);
+      console.log($("#"+quantityName).attr("name"));
+      $("#"+quantityName).attr("max",quantity);
+      $("#"+quantityName).attr("data-unitValue",$(this).children("option:selected").attr("data-unitValue"));
+
+  });
+
+  function calculateTotal(){
+      values = document.getElementsByClassName("quantityTracker");
+      sum = 0
+      for (i=1; i<values.length;i++){
+          console.log(values[i]);
+          console.log(values[i].dataset.unitvalue);
+          if(Number(values[i].dataset.unitvalue)!=null && Number(values[i].value)!=null){
+            sum = sum + (Number(values[i].dataset.unitvalue) * Number(values[i].value));
+
+          };
+      };
+      return sum;
+  };
+
+  function calculateFinal(){
+      var total = $("#total").val();
+      var discount = $("#discount").val();
+      if (discount!=null){
+          final = total * (1-(discount/100));
+      }
+      else{
+        final = total;
+      }
+      return final;
+  };
+  $("#total").on("keyup",function(){
+    final = calculateFinal();
+    console.log(final);
+    $("#finalSale").val(final);
+  });
+  $("#total").on("change",function(){
+    final = calculateFinal();
+    console.log(final);
+    $("#finalSale").val(final);
+  });
+  $(".quantityTracker").on("keyup",function(){
+
+      if (Number($(this).val()) > Number($(this).attr("max"))){
+        $(this).val($(this).attr("max"));
+      }
+
+      $("#total").val(calculateTotal());
+  });
+});
+
+
+
+
+</script>
+{% endblock%}

@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    {% for invoice in "invoices" %}
+    {% for invoice in invoices %}
     <div class="col-xl-3 col-sm-6 mb-3">
       <div class="card mb-3">
         <div class="card-header">
@@ -18,7 +18,7 @@
             Final Sale: <br>
 
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <div class="card-footer small text-muted"><a href="{% url 'invoice' invoice.pk %}">See Details</a></div>
       </div>
     </div>
     {% endfor %}

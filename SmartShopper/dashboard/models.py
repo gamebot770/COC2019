@@ -28,3 +28,12 @@ class Invoice(models.Model):
     discount = models.FloatField()
     sendInvoice = models.CharField(max_length = 200)
     total = models.FloatField()
+    dateCreated = models.DateField(auto_now_add=True,blank=True,null=True)
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=100)
+
+class InvoiceItem(models.Model):
+    invoice = models.ForeignKey(Invoice,on_delete=models.CASCADE)
+    item = models.ForeignKey(Item,on_delete=models.CASCADE)
+    quantity = models.IntegerField()
