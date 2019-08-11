@@ -16,6 +16,7 @@ class Item(models.Model):
     soldWeekly = models.IntegerField()
     costPrice = models.FloatField(null=True, blank=True, default=None)
     salesPrice = models.FloatField(null=True, blank=True, default=None)
+    totalStock = models.IntegerField()
     stock = models.IntegerField()
     def __str__(self):
         return self.name

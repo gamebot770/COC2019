@@ -1,0 +1,70 @@
+{% extends 'dashboard/base.html' %}
+
+
+{%block content%}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <h1><center> Business Analytics <center> </h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+	<br>
+  <div class="row">
+    <div class="col-4">
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Most Bought Product: {{mostBoughtItem}}</div>
+          <div class="card-body">
+            Quantity: {{mostBoughtQuantity}} <br>
+            Selling Price: {{mostBoughtItem.salesPrice}}<br>
+            Cost Price: {{mostBoughtItem.costPrice}}<br>
+            Profit: {{boughtProfit}}<br>
+
+          </div>
+          <div class="card-footer small text-muted"><a href="#">See Details</a></div>
+        </div>
+    </div>
+    <div class="col-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Most Sold Product: {{mostSoldItem}}</div>
+        <div class="card-body">
+            Quantity: {{mostSoldQuantity}} <br>
+            Selling Price: {{mostSoldItem.salesPrice}}<br>
+            Cost Price: {{mostSoldItem.costPrice}}<br>
+            Profit:{{salesProfit}} <br>
+
+        </div>
+        <div class="card-footer small text-muted"><a href="#">See Details</a></div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Profit: </div>
+        <div class="card-body">
+           In this month, the business has made a total of ${{profit}}
+
+        </div>
+        <div class="card-footer small text-muted"><a href="#">See Details</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}

@@ -7,7 +7,7 @@ from django.core.files.storage import FileSystemStorage
 from openpyxl import Workbook,load_workbook
 from django.contrib.auth.models import User
 from django.contrib.auth import logout,login,authenticate
-
+from collections import defaultdict
 import copy
 import json
 # Create your views here.
@@ -200,3 +200,51 @@ def register(request):
 def userLogout(request):
     logout(request)
     return HttpResponseRedirect(reverse("dashboard"))
+
+def generateReport(request):
+    invoices = Invoice.objects.all()
+    earned = 0
+    cost = 0
+    quantities = defaultdict(int)
+    for invoice in invoices:
+        for invoiceItem in invoice.invoiceitem_set.all():
+            cost += invoiceItem.quantity * invoiceItem.item.costPrice
+            quantities[invoiceItem.item.pk] += invoiceItem.quantity
+            print(quantities)
+        earned += invoice.finalSale
+    profit = earned - cost
+
+    maxQuantity = -1
+    maxQuantityPK = None
+    for item in quantities:
+        if quantities[item] > maxQuantity:
+            maxQuantity = quantities[item]
+            maxQuantityPK = item
+    print(quantities)
+    mostPopularItem = Item.objects.get(pk=maxQuantityPK)
+
+    #mostboughtgood
+    quantitiesBought = defaultdict(int)
+    for item in Item.objects.all():
+        for stockupdate in item.stockupdate_set.all():
+            quantitiesBought[item.pk] += stockupdate.count
+            print(quantitiesBought)
+    maxBought = -1
+    maxBoughtPK = None
+    for pk in quantitiesBought:
+        if quantitiesBought[pk] > maxBought:
+            maxBought = quantitiesBought[pk]
+            maxBoughtPK = pk
+
+    mostBoughtGood = Item.objects.get(pk=maxBoughtPK)
+
+    boughtProfit = maxBought * (mostBoughtGood.salesPrice - mostBoughtGood.costPrice)
+    salesProfit = maxQuantity * (mostPopularItem.salesPrice - mostPopularItem.salesPrice)
+
+    
+
+    return render(request, "monetary.html", {"mostBoughtItem":mostBoughtGood,"mostBoughtQuantity":maxBought,
+                                             "mostSoldItem":mostPopularItem,"mostSoldQuantity":maxQuantity,
+                                             "profit":profit,"boughtProfit":boughtProfit,"soldPRofit":salesProfit})
+
+
