@@ -1,0 +1,71 @@
+{% extends 'dashboard/base.html' %}
+{% load static%}
+
+{%block content%}
+
+<div class="container-fluid" style="height:100%">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-xl-12 col-sm-12 mb-12">
+          <div class="card mb-3">
+            <div class="card-body">
+
+              <h1><center> Add Manual Stock<center> </h1>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="container-fluid">
+        	<br>
+        	<div class="row">
+
+                  <div class="container">
+
+                      <form id="form" method="POST" action="{% url 'addIneventoryManual'%}">
+                          {% csrf_token%}
+                          <div class="row">
+                              <div class="col-6">
+                                <center><h3>Item</h3></center>
+                                <select class="form-control" name="item">
+                                    <option></option>
+                                    {% for item in items %}
+                                        <option value="{{item.pk}}">{{item.name}}</option>
+                                    {% endfor %}
+                                </select>
+                              </div>
+                              <div class="col-6" >
+                                <center><h3>Item Count</h3></center>
+
+                                <input class="form-control" type="number" name="count" value="0">
+                              </div>
+                              <div class="col-12">
+                                <br>
+                                <br>
+                                <br>
+                                <center> <button class="btn btn-primary" form="form"  onclick="this.form.action={% url 'addIneventoryManualPost' 1 %}">Save and Update Another</button> </center><br>
+                                <center> <button class="btn btn-primary" form="form" onclick="this.form.action={% url 'addIneventoryManualPost' 0 %}">Save and Return to Inventory</button> </center>
+                              </div>
+
+                        </div>
+                      </form>
+                  </div>
+
+
+      	</div>
+        </div>
+      </div>
+</div>
+<div class="col-6" style="">
+    <br style="line-height:750%">
+    <center><i class="fas fa-book fa-10x"></i></center>
+</div>
+
+</div>
+</div>
+
+
+{%endblock%}

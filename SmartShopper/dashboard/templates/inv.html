@@ -4,36 +4,53 @@
 {%block content%}
 
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <h1><center> INVENTORY VIEW<center> </h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+	<br>
+	<div class="row">
+			<div class="col-3">
+				<center><button class="btn btn-outline-success">Add by Excel Spreadsheet <i class="far fa-file-excel"></i></button></center>
+			</div>
+			<div class="col-6">
+			</div>
+			<div class="col-3">
+				<center><a href="{% url 'addIneventoryManual' %}" class="btn btn-outline-primary"> Update Stock Manually <i class="fas fa-pencil-alt"></i></a></center>
+			</div>
+	</div>
+
 	<table class="table">
   <thead>
     <tr>
-      <th scope="col">Item Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Selling Price per Unit</th>
-      <th scope="col">Cost Per Unit</th>
-			<th scope="col"></th>
-
+      <th scope="col"><center>Item Name</center></th>
+      <th scope="col"><center>Quantity</center></th>
+      <th scope="col"><center>Selling Price per Unit</center></th>
+      <th scope="col"><center>Cost Per Unit</center></th>
     </tr>
   </thead>
   <tbody>
+		{% for item in items%}
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+
+      <td><center>{{item.name}}</center></td>
+      <td><center>{{item.stock}}</center></td>
+      <td><center>{{item.salesPrice}}</center></td>
+			<td><center>{{item.costPrice}}</center></td>
+
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+		{%endfor%}
   </tbody>
 </table>
 </div>

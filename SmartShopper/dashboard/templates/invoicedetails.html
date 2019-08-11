@@ -3,6 +3,7 @@
 
 {%block content%}
 
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-xl-12 col-sm-12 mb-12">
@@ -45,10 +46,11 @@
           <tbody>
             {% for item in invoice.invoiceitem_set|returnMany%}
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>{{item.item.name}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.item.salesPrice}}</td>
+              <td>{{item.item.costPrice}}</td>
+
             </tr>
             {%endfor%}
           </tbody>

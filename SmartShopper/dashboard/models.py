@@ -37,3 +37,7 @@ class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice,on_delete=models.CASCADE)
     item = models.ForeignKey(Item,on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
+class stockUpdate(models.Model):
+    item = models.ForeignKey(Item,on_delete=models.CASCADE)
+    count = models.IntegerField()

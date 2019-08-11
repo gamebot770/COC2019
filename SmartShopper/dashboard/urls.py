@@ -26,4 +26,7 @@ urlpatterns = [
     path('Invoice/<pk>', views.invoiceDetails, name = "invoice"),
     path('addInvoice', views.addInvoice, name = "addInvoice"),
     path('getQuantity', views.getQuantity, name = "getQuantity"),
+    path('createInvoice',views.createInvoice,name="createInvoice"),
+    path('addInventoryManual',views.addInventoryManual,name="addIneventoryManual"),
+    path('addInventoryManual/<addAnother>',views.addInventoryManual,name="addIneventoryManualPost"),
 ]
