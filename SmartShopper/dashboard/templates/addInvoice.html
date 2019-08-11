@@ -1,0 +1,64 @@
+{% extends 'dashboard/base.html' %}
+{% load returnMany%}
+
+{%block content%}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Invoice Number: {{invoice.pk}} - Customer {{invoice.customerNum}} {{invoice.customerfName}} {{invoice.customerlName}}</div>
+        <div class="card-body">
+
+            Date: {{invoice.dateCreated}}<br>
+            Total: ${{invoice.total}}<br>
+            Final Sale: ${{invoice.finalSale}}<br>
+            Discount: {{invoice.discount}}<br>
+            Total: ${{invoice.total}}
+
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-chart-area"></i>
+          Invoice Details</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Item Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Selling Price per Unit</th>
+              <th scope="col">Cost Per Unit</th>
+              <th scope="col"></th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in invoice.invoiceitem_set|returnMany%}
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{%endblock%}

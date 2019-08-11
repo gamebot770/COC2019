@@ -128,11 +128,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
+
   <script src="{%static 'dashboard/vendor/jquery/jquery.min.js'%}"></script>
+
   <script src="{%static 'dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{%static 'dashboard/vendor/jquery-easing/jquery.easing.min.js'%}"></script>
+
+  <!-- Core plugin JavaScript
+  <script src="{%static 'dashboard/vendor/jquery-easing/jquery.easing.min.js'%}"></script>-->
 
   <!-- Page level plugin JavaScript-->
   <script src="{%static 'dashboard/vendor/chart.js/Chart.min.js'%}"></script>
@@ -141,11 +144,14 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{%static 'dashboard/js/sb-admin.min.js'%}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-  <!-- Demo scripts for this page-->
+  <!-- Demo scripts for this page
   <script src="{%static 'dashboard/js/demo/datatables-demo.js'%}"></script>
-  <script src="{%static 'dashboard/js/demo/chart-area-demo.js'%}"></script>
+  <script src="{%static 'dashboard/js/demo/chart-area-demo.js'%}"></script>-->
 
+  {% block scripts%}
+  {% endblock%}
 </body>
 
 </html>

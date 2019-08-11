@@ -4,4 +4,5 @@ from .models import *
 
 admin.site.register(Warehouse)
 admin.site.register(Item)
+admin.site.register(Invoice)
 
