@@ -201,6 +201,11 @@ def userLogout(request):
     logout(request)
     return HttpResponseRedirect(reverse("dashboard"))
 
+class ItemProfits():
+    def __init__(self):
+        self.item = None
+        self.profit = None
+
 def generateReport(request):
     invoices = Invoice.objects.all()
     earned = 0
@@ -238,13 +243,19 @@ def generateReport(request):
 
     mostBoughtGood = Item.objects.get(pk=maxBoughtPK)
 
-    boughtProfit = maxBought * (mostBoughtGood.salesPrice - mostBoughtGood.costPrice)
-    salesProfit = maxQuantity * (mostPopularItem.salesPrice - mostPopularItem.salesPrice)
+    boughtProfit = quantities[mostBoughtGood.pk] * (mostBoughtGood.salesPrice - mostBoughtGood.costPrice)
+    salesProfit = maxQuantity * (mostPopularItem.salesPrice - mostPopularItem.costPrice)
 
-    
+    itemProfits = []
+    for item in quantities: #Sold
+        itemProfit = ItemProfits()
+        itemProfit.item = Item.objects.get(pk=item)
+        itemProfit.profit = quantities[item] * (itemProfit.item.salesPrice - itemProfit.item.costPrice)
+        itemProfits.append(itemProfit)
+
 
     return render(request, "monetary.html", {"mostBoughtItem":mostBoughtGood,"mostBoughtQuantity":maxBought,
                                              "mostSoldItem":mostPopularItem,"mostSoldQuantity":maxQuantity,
-                                             "profit":profit,"boughtProfit":boughtProfit,"soldPRofit":salesProfit})
+                                             "profit":profit,"boughtProfit":boughtProfit,"soldProfit":salesProfit,"itemProfits":itemProfits})
 
 

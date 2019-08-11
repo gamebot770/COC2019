@@ -10,14 +10,13 @@ class Warehouse(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    soldMonth = models.IntegerField()
-    soldYear = models.IntegerField()
-    soldDaily = models.IntegerField()
-    soldWeekly = models.IntegerField()
+    soldMonth = models.IntegerField(blank=True,null=True)
+    soldYear = models.IntegerField(blank=True,null=True)
+    soldDaily = models.IntegerField(blank=True,null=True)
+    soldWeekly = models.IntegerField(blank=True,null=True)
     costPrice = models.FloatField(null=True, blank=True, default=None)
     salesPrice = models.FloatField(null=True, blank=True, default=None)
-    totalStock = models.IntegerField()
-    stock = models.IntegerField()
+    stock = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 

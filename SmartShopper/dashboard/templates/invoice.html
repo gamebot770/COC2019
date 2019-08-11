@@ -17,6 +17,14 @@
 </div>
 <div class="container-fluid">
   <div class="row">
+
+      <div class="col-12">
+            <center> <a class="btn btn-outline-success" href="{% url 'addInvoice' %}"> New Customer </a></center>
+            <br>
+      </div>
+
+  </div>
+  <div class="row">
     {% for invoice in invoices %}
     <div class="col-xl-3 col-sm-6 mb-3">
       <div class="card mb-3">

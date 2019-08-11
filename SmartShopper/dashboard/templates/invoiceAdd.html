@@ -2,6 +2,19 @@
 
 
 {%block content%}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-12">
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <h1><center> New Order <center> </h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <form method="post" action="{% url 'createInvoice' %}" data-quantityURL="{% url 'getQuantity' %}">
   {% csrf_token%}
 <div class="container-fluid">
@@ -27,7 +40,7 @@
 
             <div class="form-group">
               <label for="total">Total</label>
-              <input type="float" class="form-control" id="total" name="total" aria-describedby="emailHelp" >
+              <input type="float" class="form-control" id="total" name="total" aria-describedby="emailHelp" readonly>
             </div>
 
             <div class="form-group">
